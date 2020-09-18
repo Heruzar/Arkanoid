@@ -27,9 +27,10 @@ class level extends Phaser.Scene {
     var mapa = this.make.tilemap({ key: "nivel1" });
     ladrillo = mapa.addTilesetImage("ladrillos", "ladrillosPNG");
 
-    var topLayer = mapa.createStaticLayer("top", ladrillo);
+    var topLayer = mapa.createDynamicLayer("top", ladrillo);
     topLayer.setCollisionByProperty({ collides: true });
-
+    
+    this.physics.add.overlap(pelota, topLayer)
     this.physics.add.collider(pelota, paleta);
     this.physics.add.collider(topLayer, pelota);
 
@@ -61,4 +62,5 @@ class level extends Phaser.Scene {
       paleta.setVelocityX(0);
     }
   }
+  //hacer una funcion de hit layer, mirate la clase del 1 desptiembre para saber.
 }
